@@ -13,7 +13,7 @@ return [
         'pname'      => env('PNAME', 'php-swoft'),
         'tcpable'    => env('TCPABLE', true),
         'cronable'   => env('CRONABLE', false),
-        'autoReload' => env('AUTO_RELOAD', true),
+        'autoReload' => env('AUTO_RELOAD', false),
     ],
     'tcp'     => [
         'host'               => env('TCP_HOST', '0.0.0.0'),
@@ -25,7 +25,7 @@ return [
         'open_eof_split'     => env('TCP_OPEN_EOF_SPLIT', true),
         'package_eof'        => "\r\n",
         'client' => [
-            'package_max_length' => env('TCP_CLIENT_PACKAGE_MAX_LENGTH', 1024 * 1024 * 2),
+            'package_max_length' => env('TCP_CLIENT_PACKAGE_MAX_LENGTH', 1024 * 1024 * 4),
             'open_eof_check'     => env('TCP_CLIENT_OPEN_EOF_CHECK', false),
             'open_eof_split'     => env('TCP_CLIENT_OPEN_EOF_SPLIT', true),
             'package_eof'        => "\r\n",
@@ -33,7 +33,7 @@ return [
     ],
     'http'    => [
         'host'  => env('HTTP_HOST', '0.0.0.0'),
-        'port'  => env('HTTP_PORT', 80),
+        'port'  => env('HTTP_PORT', 8000),
         'mode'  => env('HTTP_MODE', SWOOLE_PROCESS),
         'type'  => env('HTTP_TYPE', SWOOLE_SOCK_TCP),
     ],

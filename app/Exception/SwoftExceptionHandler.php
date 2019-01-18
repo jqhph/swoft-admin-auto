@@ -20,6 +20,7 @@ use Swoft\Http\Message\Server\Response;
 use Swoft\Exception\BadMethodCallException;
 use Swoft\Exception\ValidatorException;
 use Swoft\Http\Server\Exception\BadRequestException;
+use Swoft\Http\Server\Exception\RouteNotFoundException;
 
 /**
  * the handler of global exception
@@ -43,6 +44,12 @@ class SwoftExceptionHandler
      */
     public function handlerException(Response $response, \Throwable $throwable)
     {
+        if ($throwable instanceof RouteNotFoundException) {
+            return build404page()
+                ->toResponse()
+                ->withStatus(404);
+        }
+
         $file      = $throwable->getFile();
         $line      = $throwable->getLine();
         $code      = $throwable->getCode();

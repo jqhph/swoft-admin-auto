@@ -7,6 +7,9 @@
  */
 
 return [
+    'debugHandler' => [
+        'class' => \Swoft\Admin\Debugger\DebugHandler::class,
+    ],
     'noticeHandler'      => [
         'class'     => \Swoft\Log\FileHandler::class,
         'logFile'   => '@runtime/logs/notice.log',
@@ -14,7 +17,7 @@ return [
         'levels'    => [
             \Swoft\Log\Logger::NOTICE,
             \Swoft\Log\Logger::INFO,
-            \Swoft\Log\Logger::DEBUG,
+//            \Swoft\Log\Logger::DEBUG,
             \Swoft\Log\Logger::TRACE,
         ],
     ],
@@ -28,11 +31,13 @@ return [
         ],
     ],
     'logger' => [
+        'class' => \Swoft\Admin\Debugger\Logger::class,
         'name'          => APP_NAME,
-        'enable'        => env('LOG_ENABLE', false),
+        'enable'        => env('LOG_ENABLE', true),
         'flushInterval' => 100,
         'flushRequest'  => true,
         'handlers'      => [
+            '${debugHandler}',
             '${noticeHandler}',
             '${applicationHandler}',
         ],
