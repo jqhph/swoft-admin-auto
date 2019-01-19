@@ -38,10 +38,19 @@ use Swoft\Http\Server\Bean\Annotation\RequestMethod;
 class AdminMenuController
 {
     /**
+     * 设置路由前缀
+     */
+    public function setup()
+    {
+        Admin::setUrlPrefix('/');
+    }
+    
+    /**
      * @RequestMapping("/admin-menu")
      */
     public function index(Content $content)
     {
+        $this->setup();
         $header = t('Menu', 'admin-menu.labels');
         $content->breadcrumb($header);
 
@@ -182,6 +191,7 @@ EOF
      */
     public function create(Content $content)
     {
+        $this->setup();
         $form = $this->form();
 
         $form->disableViewCheck();
@@ -205,6 +215,7 @@ EOF
      */
     public function edit($id, Content $content)
     {
+        $this->setup();
         $header = translate_label('Menu');
         $current = translate_label('Edit');
         $content->breadcrumb($header, Admin::url()->list());
@@ -231,6 +242,7 @@ EOF
      */
     public function update($id)
     {
+        $this->setup();
         return $this->form($id, true)
             ->saving(function (Form $form) {
                 $date = date('Y-m-d H:i:s');
@@ -251,6 +263,7 @@ EOF
      */
     public function insert()
     {
+        $this->setup();
         return $this->form()
             ->saving(function (Form $form) {
                 $date = date('Y-m-d H:i:s');
@@ -273,6 +286,7 @@ EOF
      */
     public function destroy($id)
     {
+        $this->setup();
         if ($this->form($id, true)->destroy($id)) {
             $data = [
                 'status'  => true,
