@@ -31,7 +31,7 @@
         "swoft/process": "^1.0",
         "swoft/memory": "^1.0",
         "swoft/service-governance": "^1.0",
-        "lldca/swoft-admin": "^0.1.2"
+        "lldca/swoft-admin": "^0.1.4"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",
